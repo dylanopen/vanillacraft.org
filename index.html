@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanillacraft - a cozy vanilla SMP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Saira Condensed', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('res/hero-bg.jpg') center/cover no-repeat;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+	    padding-top: 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        nav a:hover {
+            color: #4da6ff;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+	.main-logo {
+	    margin-top: 6.25em;
+	}
+
+        .logo img {
+	    padding-top: 60px;
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.8));
+        }
+
+        .tagline {
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .subtitle {
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .btn {
+            padding: 10px 10px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+            text-decoration: none;
+            text-shadow: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            min-width: 280px;
+	    font-size: 1.25em;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: #a86aad;
+            color: white;
+        }
+
+        .btn-discord {
+            background: #8865F2;
+            color: white;
+        }
+
+        .features-box {
+            background: rgba(0, 0, 0, 0.625);
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 1.0);
+        }
+
+        .features-image {
+            width: 250px;
+            height: 250px;
+            background: #ddd;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .features-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-icon {
+            font-size: 60px;
+            color: #999;
+        }
+
+        .features-content {
+            flex: 1;
+        }
+
+        .features-title {
+            font-size: 36px;
+            font-weight: bold;
+	    text-decoration: underline;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #eee;
+            text-shadow: 2px 2px 0 black, -1px -1px 0 black;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            color: #ddd;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 24px;
+            text-transform: uppercase;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            color: #4da6ff;
+            font-size: 20px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 52px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-label {
+            position: absolute;
+            top: 82%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.0);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 36px;
+            border-radius: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #life-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('res/life-bg.jpg') center/cover no-repeat;
+        }
+
+        #audience-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('res/who-bg.jpg') center/cover no-repeat;
+        }
+
+        .footer-space {
+	    margin-top: 50px;
+	    font-family: Arial;
+	    color: white;
+	    text-align: center;
+        }
+
+	.footer-space a {
+	    color: white;
+	}
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-box {
+                flex-direction: column;
+            }
+
+            .logo img {
+                max-width: 400px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <nav>
+            <div class="nav-left">
+                <a href="/">HOME</a>
+                <a href="/rules">RULES</a>
+		<a href="https://discord.gg/EFygPtvrvn">DISCORD</a>
+            </div>
+            <div class="nav-right">
+                <a href="/staff">STAFF</a>
+                <a href="/guide">GUIDE</a>
+                <a href="/faq">FAQ</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="main-logo">
+                <img src="res/logo-nonstd.png" width=379 height=165 alt="Vanillacraft">
+            </div>
+            
+            <p class="tagline">A cozy, long-term vanilla SMP</p>
+            <p class="subtitle">No pay-to-win. No nonsense. Just Minecraft.</p>
+
+            <div class="cta-buttons">
+                <a href="/guide" class="btn btn-primary">
+                    <span>▶</span> PLAY.VANILLACRAFT.ORG
+                </a>
+                <a href="https://discord.gg/EFygPtvrvn" class="btn btn-discord">
+                    <span>💬</span> JOIN THE DISCORD
+                </a>
+            </div>
+
+            <div class="features-box">
+                <img src="res/actually-vanilla.png" class="features-image">
+                </img>
+                <div class="features-content">
+                    <h2 class="features-title">Yes, it's actually vanilla</h2>
+                    <ul class="features-list">
+                        <li>No crates, no server store, no weird GUIs</li>
+                        <li>Player-run economy </li>
+                        <li>Active staff team, but never intrusive</li>
+                        <li>Build where you want, griefing stays out</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="life-section">
+        <h2 class="section-title">Life on the Server</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-spawn.png" />
+                    <div class="card-label">SPAWN</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-bases.png" />
+                    <div class="card-label">BASES</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-teams.png" />
+                    <div class="card-label">TEAMS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-events.png" />
+                    <div class="card-label">EVENTS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-netherhub.png" />
+                    <div class="card-label">NETHERHUB</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/life-shops.png" />
+                    <div class="card-label">SHOPS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="audience-section">
+        <h2 class="section-title">Who this server is for</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/who-builders.png" />
+                    <div class="card-label">BUILDERS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/who-casuals.png" />
+                    <div class="card-label">CASUALS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+		    <img src="res/who-explorers.png" />
+                    <div class="card-label">EXPLORERS</div>
+                </div>
+            </div>
+        </div>
+
+	<div class="footer-space">
+	<p>Copyright (c) 2026 <a href="https://dylancode.dev">dylancode</a> • Website design by Baekwun, adapted and built by dylancode</p>
+	<p><a href="mailto:info@vanillacraft.org">info@vanillacraft.org</a> • Contact me personally on <a href="https://github.com/dylanopen">GitHub</a> or at <a href="mailto:vanillacraft@dylancode.dev">vanillacraft@dylancode.dev</a></p>
+	</div>
+    </section>
+
+</body>
+</html>

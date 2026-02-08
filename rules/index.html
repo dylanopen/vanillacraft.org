@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules - Vanillacraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Saira Condensed', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            background: #000;
+            background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.20)), url('/res/rules-bg.jpg') center/cover no-repeat fixed;
+        }
+
+        /* Hero Section */
+        .hero {
+	    background: none;
+            min-height: 40vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        nav a:hover {
+            color: #4da6ff;
+        }
+
+        .logo-container {
+            position: absolute;
+	    top: 20px;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.8));
+        }
+
+        .page-title {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            font-size: 72px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Rules Content */
+        .rules-content {
+            padding-left: 20px;
+            padding-: 20px;
+        }
+
+        .rules-section {
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            border-left: 8px solid #a86aad;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+            scroll-margin-top: 100px;
+        }
+
+        .rules-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .rules-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .rules-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+        }
+
+        /* Different colored borders for each card */
+        #respect {
+	    border-left-color: #a86aad;
+	    li::before {
+		color: #a86aad;
+	    }
+	}
+
+	#builds {
+	    border-left-color: #e74c3c;
+	    li::before {
+		color: #e74c3c;
+	    }
+	}
+
+	#stealing {
+	    border-left-color: #f39c12;
+	    li::before {
+		color: #f39c12;
+	    }
+	}
+
+	#pvp {
+	    border-left-color: #3498db;
+	    li::before {
+		color: #3498db;
+	    }
+	}
+
+	#mods {
+	    border-left-color: #2ecc71;
+	    li::before {
+		color: #2ecc71;
+	    }
+	}
+
+	#chat {
+	    border-left-color: #9b59b6;
+	    li::before {
+		color: #9b59b6;
+	    }
+	}
+
+	#advertising {
+	    border-left-color: #e67e22;
+	    li::before {
+		color: #e67e22;
+	    }
+	}
+
+	#friends {
+	    border-left-color: #1abc9c;
+	    li::before {
+		color: #1abc9c;
+	    }
+	}
+
+	#respect::before {
+	    background-image: url('/res/rule-1.png');
+	}
+
+	#builds::before {
+	    background-image: url('/res/rule-2.jpg');
+	}
+
+	#stealing::before {
+	    background-image: url('/res/rule-3.png');
+	}
+
+	#pvp::before {
+	    background-image: url('/res/rule-4.jpg');
+	}
+
+	#mods::before {
+	    background-image: url('/res/rule-5.png');
+	}
+
+	#chat::before {
+	    background-image: url('/res/rule-6.jpg');
+	}
+
+	#advertising::before {
+	    background-image: url('/res/rule-7.png');
+	}
+
+	#friends::before {
+	    background-image: url('/res/rule-8.jpg');
+	}
+
+	.rules-section-content {
+	    position: relative;
+	    z-index: 2;
+	    padding: 40px;
+	}
+
+	.rules-section h2 {
+	    font-size: 42px;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	    margin-bottom: 25px;
+	    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+	    color: #fff;
+	    display: flex;
+	    align-items: center;
+	    gap: 15px;
+	}
+
+	.anchor-link {
+	    font-size: 20px;
+	    color: rgba(255, 255, 255, 0.3);
+	    text-decoration: none;
+	    transition: color 0.2s, transform 0.2s;
+	    cursor: pointer;
+	    display: inline-flex;
+	    align-items: center;
+	}
+
+	.anchor-link:hover {
+	    color: rgba(255, 255, 255, 1);
+	    transform: scale(1.1);
+	}
+
+	.copy-notification {
+	    position: fixed;
+	    bottom: 30px;
+	    right: 30px;
+	    background: #2ecc71;
+	    color: white;
+	    padding: 15px 25px;
+	    border-radius: 8px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	    z-index: 1000;
+	    opacity: 0;
+	    transform: translateY(20px);
+	    transition: opacity 0.3s, transform 0.3s;
+	    pointer-events: none;
+	}
+
+	.copy-notification.show {
+	    opacity: 1;
+	    transform: translateY(0);
+	}
+
+	.rules-section ul {
+	    list-style: none;
+	    padding-left: 0;
+	}
+
+	.rules-section li {
+	    font-size: 22px;
+	    margin-bottom: 12px;
+	    padding-left: 30px;
+	    position: relative;
+	    line-height: 1.3;
+	    font-size: 1.65em;
+	}
+
+	.rules-section li::before {
+	    content: '•';
+	    position: absolute;
+	    left: 0;
+	    color: #a86aad;
+	    font-size: 28px;
+	    line-height: 1.3;
+	}
+
+	.rules-section p {
+	    font-size: 22px;
+	    margin-bottom: 12px;
+	    line-height: 1.5;
+	}
+
+	.rules-section li strong,
+	.rules-section p strong {
+	    font-weight: 800;
+	    color: #fff;
+	}
+
+	.footer-space {
+	    margin-top: 50px;
+	    padding: 30px 20px;
+	    font-family: Arial;
+	    color: white;
+	    text-align: center;
+	    background: rgba(0, 0, 0, 0.8);
+	}
+
+	.footer-space a {
+	    color: white;
+	}
+
+	.footer-space p {
+	    margin: 5px 0;
+	}
+
+	@media (max-width: 768px) {
+	    .page-title {
+		font-size: 48px;
+	    }
+
+	    .rules-section {
+		margin: 0 10px 30px 10px;
+		border-left-width: 6px;
+	    }
+
+	    .rules-section-content {
+		padding: 30px 20px;
+	    }
+
+	    .rules-section h2 {
+		font-size: 32px;
+	    }
+
+	    .rules-section li,
+	    .rules-section p {
+		font-size: 18px;
+	    }
+
+	    .logo-container img {
+		max-width: 200px;
+	    }
+
+	    nav {
+		flex-direction: column;
+		gap: 15px;
+	    }
+
+	    nav a {
+		font-size: 18px;
+	    }
+	}
+    </style>
+</head>
+<body>
+    <section class="hero">
+	<nav>
+	    <div class="nav-left">
+		<a href="/">HOME</a>
+		<a href="/rules">RULES</a>
+		<a href="https://discord.gg/EFygPtvrvn">DISCORD</a>
+	    </div>
+	    <div class="nav-right">
+		<a href="/staff">STAFF</a>
+		<a href="/guide">GUIDE</a>
+		<a href="/faq">FAQ</a>
+	    </div>
+	</nav>
+
+	<div class="logo-container">
+	    <a href="/">
+		<img src="/res/logo-nonstd.png" alt="Vanillacraft">
+	    </a>
+	</div>
+
+	<h1 class="page-title">OUR RULES</h1>
+    </section>
+
+    <div class="rules-content">
+	<section class="rules-section" id="respect">
+	    <div class="rules-section-content">
+		<h2>
+		    Respect your fellow vanillacrafters
+		    <a href="#respect" class="anchor-link" onclick="copyLink(event, 'respect')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>We shouldn't need to clarify what being respectful means.</li>
+		    <li>Don't overstep other players' boundaries, especially if they have explicitly told you not to.</li>
+		    <li>Any form of discrimination against players will result in a ban. Everybody is equal here.</li>
+		    <li>If a player tells you not to say something, don't say it.</li>
+		    <li><strong>If you can't respect people for who they are, you have no place in our server.</strong></li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="builds">
+	    <div class="rules-section-content">
+		<h2>
+		    Don't damage players' builds
+		    <a href="#builds" class="anchor-link" onclick="copyLink(event, 'builds')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>Any sort of griefing isn't tolerated here.</li>
+		    <li>Breaking any block somebody else placed is griefing (within reason).</li>
+		    <li>Setting fires, explosions, 'accidentally' destroying something someone worked hard on, is included.</li>
+		    <li>Did someone damage your base? Speak to them about it, or ask staff to roll it back in a ticket!</li>
+		    <li>Please do let us know if your build is damaged.</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="stealing">
+	    <div class="rules-section-content">
+		<h2>
+		    Don't steal from shops or bases
+		    <a href="#stealing" class="anchor-link" onclick="copyLink(event, 'stealing')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>Items in a shop are sold for a specific price. So don't take items without paying!</li>
+		    <li>Underpaying in shops is the same. Please don't do it.</li>
+		    <li>It's not just shops: stealing from others' bases isn't allowed - this isn't anarchy - we're friendly here!</li>
+		    <li>If you think we won't notice... we will ;)</li>
+		    <li>Think you've been stolen from? Make a stealing ticket and we'll investigate and get you your stuff back!</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="pvp">
+	    <div class="rules-section-content">
+		<h2>
+		    PVP is optional
+		    <a href="#pvp" class="anchor-link" onclick="copyLink(event, 'pvp')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>We have a consent system to PVP on Vanillacraft.</li>
+		    <li>If you and a friend agree to PVP - go ahead!</li>
+		    <li>However, please do not attack other players if they have not given you permission.</li>
+		    <li>We do enforce this - if you repeatedly attack other players without permission, we may take action.</li>
+		    <li>Again though, if another player is annoying you - let us know and we'll sort it out!</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="mods">
+	    <div class="rules-section-content">
+		<h2>
+		    What sort of mods are OK?
+		    <a href="#mods" class="anchor-link" onclick="copyLink(event, 'mods')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>Most mods are fine on Vanillacraft!</li>
+		</ul>
+		<p style="padding-left: 30px;">Fullbright, freecam, Xaero's minimap and performance mods like Sodium are all mods we recommend!</p>
+		<p style="padding-left: 30px;">However, we don't allow 'cheat' mods giving an advantage, like:</p>
+		<ul>
+		    <li>Hacked clients, xray (including texture packs), and others.</li>
+		    <li>Litematica is allowed, except for the 'printer' mode.</li>
+		    <li>We do frequently monitor if people are using cheats, and have anticheat software to make sure the server is fair for everyone!</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="chat">
+	    <div class="rules-section-content">
+		<h2>
+		    Keeping the chat clean
+		    <a href="#chat" class="anchor-link" onclick="copyLink(event, 'chat')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>We don't allow excessive swearing in Minecraft and Discord chat. We won't take action against occasional bad language, but ideally, just don't use negative words :)</li>
+		    <li>Any sort of NSFW messages or content is strictly forbidden, and will result in a ban from the discord and minecraft server.</li>
+		    <li>This is not the place for political discussion and debates.</li>
+		    <li>Sharing experiences which were shaped by societal issues is not itself politics. Discussing that here could help people.</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="advertising">
+	    <div class="rules-section-content">
+		<h2>
+		    Advertising
+		    <a href="#advertising" class="anchor-link" onclick="copyLink(event, 'advertising')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>Vanillacraft isn't a place to advertise anything, really.</li>
+		    <li>However, if you are a long-term member of the server, we have a #advertising discord channel - you can apply to post there by making a ticket.</li>
+		    <li>Other than specifically in that channel, advertising is not allowed, which includes promotion of other servers, paid or unpaid services, etc. Make a ticket if you're unsure!</li>
+		    <li>Any DM advertising will result in an instant permanent ban.</li>
+		</ul>
+	    </div>
+	</section>
+
+	<section class="rules-section" id="friends">
+	    <div class="rules-section-content">
+		<h2>
+		    Invite your friends!
+		    <a href="#friends" class="anchor-link" onclick="copyLink(event, 'friends')" title="Copy link">📎</a>
+		</h2>
+		<ul>
+		    <li>It's the best way we can grow the server!</li>
+		    <li>Also, having a friend to play along with you on the server is always more fun than playing alone (even if you're meeting new people).</li>
+		    <li>Also, look out for the events we host! They're often a great way to meet new people and find common interests.</li>
+		    <li>And if you are playing alone - we hope you find someone here who shares your interests and you can get to know them!</li>
+		</ul>
+	    </div>
+	</section>
+    </div>
+
+    <div class="footer-space">
+	<p>Copyright (c) 2026 <a href="https://dylancode.dev">dylancode</a> • Website design by Baekwun, adapted and built by dylancode</p>
+	<p><a href="mailto:info@vanillacraft.org">info@vanillacraft.org</a> • Contact me personally on <a href="https://github.com/dylanopen">GitHub</a> or at <a href="mailto:vanillacraft@dylancode.dev">vanillacraft@dylancode.dev</a></p>
+    </div>
+
+    <script>
+	function copyLink(event, sectionId) {
+	    event.preventDefault();
+	    const url = window.location.origin + '/rules#' + sectionId;
+	    if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(url).then(function() {
+		}).catch(function() {
+		    // Fallback: just navigate to the anchor
+		    window.location.hash = sectionId;
+		});
+	    } else {
+		// Fallback for browsers that don't support clipboard API
+		window.location.hash = sectionId;
+	    }
+	}
+    </script>
+</body>
+</html>
